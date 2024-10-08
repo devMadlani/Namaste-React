@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 function Header() {
   const [isLoading , setIsLoding] = useState(false)
+  const onlineStatus = useOnlineStatus()
     return (
       <div className="header flex justify-between border">
         <div className="logo-container">
           <img className="w-28" src={LOGO_URL} alt="" />
         </div>
         <div className="flex gap-16 mr-12  items-center">
+          {onlineStatus ? "Online":"Offline"}
           <Link to="/">Home</Link>
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact Us</Link>
+          <Link to="/grocery">Grocery</Link>
           <Link to="/">Cart</Link>
 
           <div>

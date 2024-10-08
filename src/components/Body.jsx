@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
 
 import ShimmerUi from "./shimmerUi";
+import useOnlineStatus from "../utils/useOnlineStatus";
 export function Body() {
   const [resObj, setResObj] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
@@ -23,6 +24,10 @@ export function Body() {
     );
     // console.log(json)
   };
+  const onlineStatus = useOnlineStatus()
+  if(onlineStatus === false){
+    return <h1 className="text-lg  font-bold">You are offline</h1>
+  }
   return resObj?.length === 0 ? (
     <ShimmerUi />
   ) : (
